@@ -2,7 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+
 import reportWebVitals from './reportWebVitals';
+import "@blueprintjs/core/lib/css/blueprint.css";
+import "@blueprintjs/icons/lib/css/blueprint-icons.css";
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import { FocusStyleManager } from "@blueprintjs/core";
+
+FocusStyleManager.onlyShowFocusOnTabs(); 
+
+
 
 ReactDOM.render(
   <React.StrictMode>
