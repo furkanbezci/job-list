@@ -8,10 +8,28 @@
   background-color: rgb(0, 225, 255) !important;
 }
 .card-width{
-  min-width: 50vh
+  width: 50vh;
+  min-width: 20vh;
 }
 .job-container{
   display: flex;
   justify-content: flex-start;
   padding: 10px;
+}
+.input-container{
+  padding:5px;
+  max-width: 55vh;
+  min-width: 20vh;
+}
+.input-container .bp3-form-content {
+  width: 41vh !important;
+}
+
+.flex-end{
+  display: flex;
+  justify-content: flex-end;
+}.mb-10{
+  margin-bottom: 10px;
+}.ml-10{
+  margin-left: 10px;
 }

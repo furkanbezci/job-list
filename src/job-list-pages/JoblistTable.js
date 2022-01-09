@@ -7,10 +7,10 @@ import { LocalStorageTerminal } from '../utils/LocalStorageTerminal';
 import { CustomToaster } from '../utils/Toaster';
 import axios from 'axios';
 import { SortDatas } from '../utils/SortDatas';
+import { FormGroup, InputGroup } from '@blueprintjs/core';
 
 const JoblistTable = () => {
     const [dataList, setDataList] = useState([])
-
     useEffect(() => {
         let jobDatasInLocalStorage = localStorage.getItem("jobList")
         if (jobDatasInLocalStorage) {
@@ -30,19 +30,30 @@ const JoblistTable = () => {
     //   }}
     const onConfirmDelete = item => {
         const filtered = dataList.filter(data => data.job !== item.job)
-
         LocalStorageTerminal.setItem("jobList", filtered).then(val => {
             setDataList(filtered);
             CustomToaster("success", "Job Deleted")
         })
     }
-
+    const onChangeInput = e => {
+        const defaultValues = localStorage.getItem("jobList")
+        const searched = JSON.parse(defaultValues).filter(item =>
+            item.job.toLowerCase().indexOf(
+                e.target.value.toLowerCase()
+            ) >= 0
+        )
+        setDataList(searched)
+    }
 
 
     return (
-        <div style={{ height: 600 ,padding:5}}>
-
+        <div style={{ height: 600, padding: 5 }}>
             <JobForm setDataList={setDataList} dataList={dataList} />
+            <FormGroup label="Search Jobs" inline className='input-container'>
+
+                <InputGroup onChange={onChangeInput} placeholder='Search...' fill />
+            </FormGroup>
+
             <div className='ag-theme-alpine' style={{ height: 500 }} >
                 <AgGridReact
                     style={{ height: 500 }}
@@ -81,18 +92,11 @@ const JoblistTable = () => {
                         },
 
                     }}
-                    postSort={(rowNodes) => {
-                        let nextInsertPos = 0;
-                        for (let i = 0; i < rowNodes.length; i++) {
-                            const priority = rowNodes[i].data.priority;
-                            if (priority === 'Urgent') {
-                                rowNodes.splice(nextInsertPos, 0, rowNodes.splice(i, 1)[0]);
-                                nextInsertPos++;
-                            }
-                        }
-                    }}
+                   
 
                 >
+                    <AgGridColumn headerName="Job List">
+
                     <AgGridColumn headerName="Job" field="job" />
                     <AgGridColumn headerName="Priority" field="priority.name"
                     />
@@ -102,10 +106,12 @@ const JoblistTable = () => {
                             dataList: dataList,
                             setDataList: setDataList,
                         }}
-                    />
+                        filter={false}
+                        />
+                        </AgGridColumn>
                 </AgGridReact>
             </div>
-            
+
 
         </div>
     )

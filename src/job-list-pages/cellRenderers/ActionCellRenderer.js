@@ -35,7 +35,7 @@ export const ActionCellRenderer = params => {
                                 intent='danger'
                                 className={Classes.POPOVER_DISMISS}
                             />
-                            <Button style={{ marginLeft: 10 }} text='Cancel' className={Classes.POPOVER_DISMISS} />
+                            <Button className="ml-10" text='Cancel' className={Classes.POPOVER_DISMISS} />
                         </div>
                     </div>
                 }
