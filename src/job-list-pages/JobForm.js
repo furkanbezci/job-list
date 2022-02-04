@@ -27,7 +27,7 @@ const JobForm = props => {
             if (res?.data)
                 setPriorityList(res.data)
             else (setPriorityList(dummy))
-        })
+        }).catch(()=>setPriorityList(dummy))
     }, [])
 
     const onSave = values => {

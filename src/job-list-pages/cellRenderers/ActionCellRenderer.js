@@ -21,9 +21,7 @@ export const ActionCellRenderer = params => {
                 }
             >
                 <Button text="edit" icon="edit"  onClick={() => onClickEdit(data)} minimal />
-
             </Popover>
-
             <Popover
                 content={
                     <div style={{ padding: 14 }}>

@@ -5,7 +5,6 @@ import JobForm from './JobForm';
 import { ActionCellRenderer } from './cellRenderers/ActionCellRenderer';
 import { LocalStorageTerminal } from '../utils/LocalStorageTerminal';
 import { CustomToaster } from '../utils/Toaster';
-import axios from 'axios';
 import { SortDatas } from '../utils/SortDatas';
 import { FormGroup, InputGroup } from '@blueprintjs/core';
 
@@ -75,6 +74,7 @@ const JoblistTable = () => {
                     pagination={true}
                     paginationPageSize={10}
                     rowClassRules={{
+                        
                         'priority-urgent': function (params) {
                             const { name } = params.data.priority
                             if (name === "Urgent")
